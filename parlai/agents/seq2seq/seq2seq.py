@@ -176,12 +176,14 @@ class Seq2seqAgent(Agent):
             self.NULL_IDX = shared['NULL_IDX']
             # answers contains a batch_size list of the last answer produced
             self.answers = shared['answers']
-
+            print("im here....")
             if 'model' in shared:
                 # model is shared during hogwild
                 self.model = shared['model']
                 self.metrics = shared['metrics']
                 states = shared['states']
+            else:
+                raise RuntimeError('where mah model att??1')                
         else:
             # this is not a shared instance of this class, so do full init
             # answers contains a batch_size list of the last answer produced
@@ -282,6 +284,10 @@ class Seq2seqAgent(Agent):
             if self.use_cuda:
                 self.model.cuda()
 
+        if not hasattr(self, 'model'):
+            raise RuntimeError('where mah model att??')
+
+                
         if hasattr(self, 'model'):
             # if model was built, do more setup
             self.clip = opt.get('gradient_clip', -1)
@@ -445,6 +451,8 @@ class Seq2seqAgent(Agent):
                 'optimizer': self.optimizer.state_dict(),
                 'optimizer_type': self.opt['optimizer'],
             }
+        else:
+            raise RuntimeError('where mah model att??numthreads')
         return shared
 
     def observe(self, observation):

@@ -29,6 +29,8 @@ def build_dict():
         dict_file=DICT_FINAL,
         dict_include_valid=True,
     )
+    parser.add_argument('--rnr-min-label-size', type=int, default=1)
+    parser.add_argument('--rnr-modelfile', type=str, default='')
     opt = parser.parse_args()
     return main_build_dict(opt)
 

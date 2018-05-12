@@ -218,7 +218,7 @@ def eval_ppl(opt):
     ranking enabled.
     """
     dict_agent = build_dict()
-
+    
     # create agents
     agent = create_agent(opt)
     world = create_task(opt, [agent, dict_agent], default_world=PerplexityWorld)
