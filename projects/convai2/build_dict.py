@@ -31,6 +31,8 @@ def build_dict():
     )
     parser.add_argument('--rnr-min-label-size', type=int, default=1)
     parser.add_argument('--rnr-modelfile', type=str, default='')
+    parser.add_argument('--rnr-candsmax', type=int, default=100)
+    parser.add_argument('--rnr-candstype', type=int, default=1)
     opt = parser.parse_args()
     return main_build_dict(opt)
 
